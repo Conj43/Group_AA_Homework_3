@@ -15,12 +15,12 @@ public class CDRecordProduct extends MediaProduct{
 		}
 		
 		//copy constructor
-			public CDRecordProduct(CDRecordProduct product) {
+		public CDRecordProduct(CDRecordProduct product) {
 				this.title = product.title;
 				this.price = product.price;
 				this.year = product.year;
 				this.genre = product.genre;
-			}
+		}
 
 
 			@Override
