@@ -73,7 +73,17 @@ public class StockManagerSingleton {
 			String info = product.toString();
 			System.out.println(info);
 		}
+	
 	}
+	
+	//Updates the price of the given media product to the newPrice.
+	//Returns true if the update is successful, false otherwise
+	public boolean updateItemPrice(MediaProduct product, double newPrice)
+	{
+		return true;
+	}
+	
+	
 	
 	
 
