@@ -83,6 +83,20 @@ public class StockManagerSingleton {
 			System.out.println(i + ") " + info);  //use a counter to see how many products are in the list
 			i++;
 		}
+	
+	}
+	
+	//Updates the price of the given media product to the newPrice.
+	//Returns true if the update is successful, false otherwise
+	public boolean updateItemPrice(MediaProduct product, double newPrice)
+	{
+		product.setPrice(newPrice); // sets the new price
+		
+		if(product.getPrice() == newPrice) //compares the price to the newPrice
+			return true; //if they match is was successful
+		
+		else
+			return false; //else return a failure
 	}
 	
 	//this method takes an array list of type media product and returns an array list of type cd record product with each cd type in the inventory
@@ -116,6 +130,31 @@ public class StockManagerSingleton {
 	}
 	
 	
+	 //Adds a new media product to the inventory.
+	 //Returns true if the addiHon is successful, false otherwise.
+	public boolean addItem(MediaProduct product)
+	{
+		inventory.add(product); //adds the new product to the array list inventory
+		
+		if(inventory.contains(product) == true) //checks to see if inventory contains the new item
+				return true;                  
+			//returns success
+		else
+			return false; //else returns failure
+	}
+		
+	//Removes the given media product from the inventory.
+	//Returns true if the removal is successful, false otherwise.
+	public boolean removeItem(MediaProduct product)
+	{
+		inventory.remove(product); //removes the product from inventory
+		
+		if(inventory.contains(product) == false) //checks to see if the array list contains product
+			return true; //returns success
+		else
+			return false; //else return failure
+	}
+		
 
 
 
