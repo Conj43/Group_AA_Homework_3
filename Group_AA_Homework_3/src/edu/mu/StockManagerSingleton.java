@@ -94,7 +94,13 @@ public class StockManagerSingleton {
 	 //Returns true if the addiHon is successful, false otherwise.
 	public boolean addItem(MediaProduct product)
 	{
-		return true;
+		inventory.add(product); //adds the new product to the array list inventory
+		
+		if(inventory.getLast()== product) //checks to see if the most recently added item is
+				return true;                  // the one just added
+			//returns success
+		else
+			return false; //else returns failure
 	}
 		
 	//Removes the given media product from the inventory.
