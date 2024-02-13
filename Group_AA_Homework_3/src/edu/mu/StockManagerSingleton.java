@@ -107,7 +107,12 @@ public class StockManagerSingleton {
 	//Returns true if the removal is successful, false otherwise.
 	public boolean removeItem(MediaProduct product)
 	{
-		return true;
+		inventory.remove(product); //removes the product from inventory
+		
+		if(inventory.contains(product) == false) //checks to see if the array list contains product
+			return true; //returns success
+		else
+			return false; //else return failure
 	}
 		
 
