@@ -84,6 +84,13 @@ public class StockManagerSingleton {
 	}
 	
 	
+	 //Adds a new media product to the inventory.
+	 //Returns true if the addiHon is successful, false otherwise.
+	public boolean addItem(MediaProduct product)
+	{
+		return true;
+	}
+		
 	
 	
 
