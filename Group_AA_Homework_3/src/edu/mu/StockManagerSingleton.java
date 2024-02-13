@@ -154,8 +154,28 @@ public class StockManagerSingleton {
 		else
 			return false; //else return failure
 	}
+	
+	public void printListOfMediaProduct(ArrayList<MediaProduct>product){
+		//Iterate through the list of media products
+	    for (MediaProduct media : product) {
+	        //Print each product's information
+	        System.out.println(product);
+	    }
+	    }
 		
 
+	    public ArrayList<VinylRecordProduct> getVinylRecordList(ArrayList<MediaProduct> productList) {
+	        ArrayList<VinylRecordProduct> vinylRecordList = new ArrayList<>();
+	        //Now iterate through the productList
+	        for (MediaProduct product : productList) {
+	            //Check if the product is an instance of VinylRecordProduct
+	            if (product instanceof VinylRecordProduct) {
+	                //If it is, cast it to VinylRecordProduct and add it to the vinylRecordList
+	                vinylRecordList.add((VinylRecordProduct) product);
+	            }
+	        }
 
-
+	        //Return the filtered list of VinylRecordProduct
+	        return vinylRecordList;
+	    }
 }
