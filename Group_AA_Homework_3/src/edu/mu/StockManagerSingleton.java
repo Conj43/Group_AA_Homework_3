@@ -91,8 +91,13 @@ public class StockManagerSingleton {
 		return true;
 	}
 		
-	
-	
+	//Removes the given media product from the inventory.
+	//Returns true if the removal is successful, false otherwise.
+	public boolean removeItem(MediaProduct product)
+	{
+		return true;
+	}
+		
 
 
 
