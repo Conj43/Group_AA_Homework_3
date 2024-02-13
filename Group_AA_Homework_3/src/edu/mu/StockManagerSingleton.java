@@ -75,7 +75,30 @@ public class StockManagerSingleton {
 		}
 	}
 	
-	
+	//saves the updated inventory back to the CSV file
+	public boolean saveStock() {
+	    try (FileWriter writer = new FileWriter(inventoryFilePath)) { //opens a filewriter to write data to the file
+	        for (MediaProduct product : inventory) {
+	            writer.write(product.getTitle() + "," + product.getPrice() + "," + product.getYear() + "," + product.getGenre() + "\n");
+	        }
+	        return true;
+	    } catch (IOException e) { //exception handle
+	        e.printStackTrace();
+	        return false;
+	    }
+	}
+//gets the media producsw that are under the max price. 
+	public ArrayList<MediaProduct> getMediaProductBelowPrice(int maxPrice) {
+	    ArrayList<MediaProduct> belowPriceList = new ArrayList<>(); //makes na array list to store the products below the max price
+	    for (MediaProduct product : inventory) {
+	        if (product.getPrice() < maxPrice) {
+	            belowPriceList.add(new MediaProduct(product)); 
+	        }
+	    }
+	    return belowPriceList;
+	}
+
+}
 
 
 
