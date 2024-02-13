@@ -96,7 +96,7 @@ public class StockManagerSingleton {
 	{
 		inventory.add(product); //adds the new product to the array list inventory
 		
-		if(inventory.getLast()== product) //checks to see if the most recently added item is
+		if(inventory.contains(product) == true) //checks to see if the most recently added item is
 				return true;                  // the one just added
 			//returns success
 		else
