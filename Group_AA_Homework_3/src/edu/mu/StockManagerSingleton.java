@@ -80,7 +80,13 @@ public class StockManagerSingleton {
 	//Returns true if the update is successful, false otherwise
 	public boolean updateItemPrice(MediaProduct product, double newPrice)
 	{
-		return true;
+		product.setPrice(newPrice); // sets the new price
+		
+		if(product.getPrice() == newPrice) //compares the price to the newPrice
+			return true; //if they match is was successful
+		
+		else
+			return false; //else return a failure
 	}
 	
 	
