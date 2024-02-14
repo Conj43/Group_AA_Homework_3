@@ -75,16 +75,7 @@ public class StockManagerSingleton {
 	}
 	
 	
-	//we use generic type T of MediaProduct so we can use this function to print out every element of an array list of any type we have created
-	public <T extends MediaProduct> void print(ArrayList<T> products) {
-		int i = 1;
-		for(MediaProduct product : products) {
-			String info = product.toString(); //very easy because we use toString method that we implemented in each class
-			System.out.println(i + ") " + info);  //use a counter to see how many products are in the list
-			i++;
-		}
 	
-	}
 	
 	//Updates the price of the given media product to the newPrice.
 	//Returns true if the update is successful, false otherwise
@@ -98,8 +89,10 @@ public class StockManagerSingleton {
 		else
 			return false; //else return a failure
 	}
+	
+	
 	 //Adds a new media product to the inventory.
-	 //Returns true if the addiHon is successful, false otherwise.
+	 //Returns true if the add item is successful, false otherwise.
 	public boolean addItem(MediaProduct product)
 	{
 		inventory.add(product); //adds the new product to the array list inventory
@@ -122,12 +115,27 @@ public class StockManagerSingleton {
 		else
 			return false; //else return failure
 	}
+	
+	
+	
 		//saves the updated inventory back to the CSV file
 	public boolean saveStock() {
-	    try (FileWriter writer = new FileWriter(inventoryFilePath)) { //opens a filewriter to write data to the file
+	    try (FileWriter writer = new FileWriter(inventoryFilePath)) { //opens a file writer to write data to the file
+	    	writer.write("Type," + "Title," + "Price," + "Year," + "Genre" + "\n"); //need to account for first row of labels
 	        for (MediaProduct product : inventory) 
           {    
-              writer.write(product.getTitle() + "," + product.getPrice() + "," + product.getYear() + "," + product.getGenre() + "\n");
+	        	String type = ""; //find which type in order to correctly assign it
+	        	if(product instanceof CDRecordProduct) {
+	        		type = "CD";
+	        	}
+	        	else if(product instanceof VinylRecordProduct) {
+	        		type = "Vinyl";
+	        	}
+	        	else if(product instanceof TapeRecordProduct) {
+	        		type = "Tape";
+	        	}
+	        	else type = "none";
+              writer.write(type + "," + product.getTitle() + "," + product.getPrice() + "," + product.getYear() + "," + product.getGenre() + "\n");
 	        }
 	        return true;
 	    } catch (IOException e) //exception handle
@@ -139,7 +147,7 @@ public class StockManagerSingleton {
 //gets the media products that are under the max price. 
 	public ArrayList<MediaProduct> getMediaProductBelowPrice(int maxPrice) 
     {
-	    ArrayList<MediaProduct> belowPriceList = new ArrayList<>(); //makes na array list to store the products below the max price
+	    ArrayList<MediaProduct> belowPriceList = new ArrayList<>(); //makes an array list to store the products below the max price
 	    for (MediaProduct product : inventory) 
       {
 	        if (product.getPrice() < maxPrice) 
@@ -185,11 +193,12 @@ public class StockManagerSingleton {
 	}
 
 	
-	public void printListOfMediaProduct(ArrayList<MediaProduct>product){
+	public void printListOfMediaProduct(ArrayList<MediaProduct> product){
 		//Iterate through the list of media products
 	    for (MediaProduct media : product) {
+	    	String info = media.toString();
 	        //Print each product's information
-	        System.out.println(product);
+	        System.out.println(info);
 	    }
 	    }
 		
@@ -201,12 +210,26 @@ public class StockManagerSingleton {
 	            //Check if the product is an instance of VinylRecordProduct
 	            if (product instanceof VinylRecordProduct) {
 	                //If it is, cast it to VinylRecordProduct and add it to the vinylRecordList
-	                vinylRecordList.add((VinylRecordProduct) product);
+	            	//use copy constructor to prevent leaking info
+	                vinylRecordList.add(new VinylRecordProduct((VinylRecordProduct)product));
 	            }
 	        }
 
 	        //Return the filtered list of VinylRecordProduct
 	        return vinylRecordList;
 	    }
+	    
+	    
+	  //we use generic type T of MediaProduct so we can use this function to print out every element of an array list of any type we have created
+		//this is not the required function, it is just a function to make it easier for us to test our code
+		public <T extends MediaProduct> void print(ArrayList<T> products) {
+			int i = 1;
+			for(MediaProduct product : products) {
+				String info = product.toString(); //very easy because we use toString method that we implemented in each class
+				System.out.println(i + ") " + info);  //use a counter to see how many products are in the list
+				i++;
+			}
+		
+		}
 
 }
