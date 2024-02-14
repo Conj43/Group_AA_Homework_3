@@ -1,6 +1,5 @@
 Type,Title,Price,Year,Genre
-CD,Rumours,23.99,1977,ROCK
-Vinyl,Abbey Road,27.99,1969,ROCK
+CD,Rumours,20.5,1977,ROCK
 Vinyl,The Wall,29.99,1979,ROCK
 Vinyl,Baby Shark,10.99,2021,POP
 Vinyl,Dark Side of the Moon,25.99,1973,ROCK
@@ -43,3 +42,4 @@ Vinyl,Hotel California,27.99,1976,ROCK
 Vinyl,Strauss: Also Sprach Zarathustra,26.99,1896,CLASSICAL
 CD,Chemical Brothers: Surrender,17.99,1999,ELECTRONIC
 Vinyl,Baby Shark,10.99,2021,POP
+CD,New Item,9.99,2009,HIP_HOP
