@@ -151,8 +151,7 @@ public class StockManagerSingleton {
 	}	
 	
   
-  
-  //kymani's code here
+
   
   
   //this method takes an array list of type media product and returns an array list of type cd record product with each cd type in the inventory
@@ -184,5 +183,30 @@ public class StockManagerSingleton {
 		return tapeList; //return new tape array list
 		
 	}
+
+	
+	public void printListOfMediaProduct(ArrayList<MediaProduct>product){
+		//Iterate through the list of media products
+	    for (MediaProduct media : product) {
+	        //Print each product's information
+	        System.out.println(product);
+	    }
+	    }
+		
+
+	    public ArrayList<VinylRecordProduct> getVinylRecordList(ArrayList<MediaProduct> productList) {
+	        ArrayList<VinylRecordProduct> vinylRecordList = new ArrayList<>();
+	        //Now iterate through the productList
+	        for (MediaProduct product : productList) {
+	            //Check if the product is an instance of VinylRecordProduct
+	            if (product instanceof VinylRecordProduct) {
+	                //If it is, cast it to VinylRecordProduct and add it to the vinylRecordList
+	                vinylRecordList.add((VinylRecordProduct) product);
+	            }
+	        }
+
+	        //Return the filtered list of VinylRecordProduct
+	        return vinylRecordList;
+	    }
 
 }
