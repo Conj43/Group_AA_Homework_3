@@ -98,8 +98,63 @@ public class StockManagerSingleton {
 		else
 			return false; //else return a failure
 	}
+	 //Adds a new media product to the inventory.
+	 //Returns true if the addiHon is successful, false otherwise.
+	public boolean addItem(MediaProduct product)
+	{
+		inventory.add(product); //adds the new product to the array list inventory
+		
+		if(inventory.contains(product) == true) //checks to see if inventory contains the new item
+				return true;                  
+			//returns success
+		else
+			return false; //else returns failure
+	}
+		
+	//Removes the given media product from the inventory.
+	//Returns true if the removal is successful, false otherwise.
+	public boolean removeItem(MediaProduct product)
+	{
+		inventory.remove(product); //removes the product from inventory
+		
+		if(inventory.contains(product) == false) //checks to see if the array list contains product
+			return true; //returns success
+		else
+			return false; //else return failure
+	}
+		//saves the updated inventory back to the CSV file
+	public boolean saveStock() {
+	    try (FileWriter writer = new FileWriter(inventoryFilePath)) { //opens a filewriter to write data to the file
+	        for (MediaProduct product : inventory) 
+          {    
+              writer.write(product.getTitle() + "," + product.getPrice() + "," + product.getYear() + "," + product.getGenre() + "\n");
+	        }
+	        return true;
+	    } catch (IOException e) //exception handle
+      { 
+          e.printStackTrace();
+	        return false;
+	    }
+	}
+//gets the media products that are under the max price. 
+	public ArrayList<MediaProduct> getMediaProductBelowPrice(int maxPrice) 
+    {
+	    ArrayList<MediaProduct> belowPriceList = new ArrayList<>(); //makes na array list to store the products below the max price
+	    for (MediaProduct product : inventory) 
+      {
+	        if (product.getPrice() < maxPrice) 
+          {
+	            belowPriceList.add(new MediaProduct(product)); 
+	        }
+	    }
+	    return belowPriceList;
+	}	
 	
-	//this method takes an array list of type media product and returns an array list of type cd record product with each cd type in the inventory
+  
+
+  
+  
+  //this method takes an array list of type media product and returns an array list of type cd record product with each cd type in the inventory
 	public ArrayList<CDRecordProduct> getCDRecordsList(ArrayList<MediaProduct> productList){
 		
 		ArrayList<CDRecordProduct> cdList = new ArrayList<>(); //create new array list
@@ -128,32 +183,7 @@ public class StockManagerSingleton {
 		return tapeList; //return new tape array list
 		
 	}
-	
-	
-	 //Adds a new media product to the inventory.
-	 //Returns true if the addiHon is successful, false otherwise.
-	public boolean addItem(MediaProduct product)
-	{
-		inventory.add(product); //adds the new product to the array list inventory
-		
-		if(inventory.contains(product) == true) //checks to see if inventory contains the new item
-				return true;                  
-			//returns success
-		else
-			return false; //else returns failure
-	}
-		
-	//Removes the given media product from the inventory.
-	//Returns true if the removal is successful, false otherwise.
-	public boolean removeItem(MediaProduct product)
-	{
-		inventory.remove(product); //removes the product from inventory
-		
-		if(inventory.contains(product) == false) //checks to see if the array list contains product
-			return true; //returns success
-		else
-			return false; //else return failure
-	}
+
 	
 	public void printListOfMediaProduct(ArrayList<MediaProduct>product){
 		//Iterate through the list of media products
@@ -178,4 +208,5 @@ public class StockManagerSingleton {
 	        //Return the filtered list of VinylRecordProduct
 	        return vinylRecordList;
 	    }
+
 }
